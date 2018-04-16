@@ -9,9 +9,7 @@
     chrome.runtime.onMessage.addListener((msg, sender, response) => {
       switch (msg.type) {
         case 'popupInit':
-          debugger
           fetch('http://localhost:3000/extension', {
-            'mode': 'no-cors',
             method: 'POST',
             body: JSON.stringify({url: msg.tab.url}),
             headers: {
@@ -21,8 +19,6 @@
           })
           .then(res => res.json())
           .then(res => {
-            console.log(res)
-            debugger
             response(res)
           })
           break;
