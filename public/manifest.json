@@ -16,5 +16,5 @@
     "*://developer.mozilla.org/",
     "activeTab"
   ],
-  "content_security_policy": "script-src 'self' https://maps.googleapis.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com https://maps.googleapis.com; object-src 'self'"
 }

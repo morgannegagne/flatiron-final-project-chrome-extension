@@ -40,7 +40,6 @@ class App extends Component {
     }
 
     render() {
-      console.log(this.state)
       const places = this.state.places.map(place => <PlaceCard place={place} key={place.place_id} />)
         return (
           <div className="App">
@@ -67,7 +66,7 @@ class App extends Component {
                   }
                 </div>
                 :
-                <Loader>Loading...</Loader>
+                <Loader inverted>Loading...</Loader>
               }
             </p>
           </div>

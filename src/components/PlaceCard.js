@@ -48,7 +48,7 @@ class PlaceCard extends React.Component {
         {
           this.state.saved ?
           <div>
-            Saved! View on <a href="localhost:3001">SpotSaver</a>
+            Saved! View on <a href="localhost:3001" target="_blank">SpotSaver</a>
           </div>
           :
           <Button onClick={this.handleClick}>Add to your map!</Button>
