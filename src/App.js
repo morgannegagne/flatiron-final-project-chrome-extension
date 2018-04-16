@@ -19,7 +19,6 @@ class App extends Component {
 
     componentDidMount() {
       getCurrentTab((tab) => {
-        console.log(tab)
         fetch('http://localhost:3000/extension', {
           method: 'POST',
           body: JSON.stringify({url: tab.url}),
@@ -30,7 +29,7 @@ class App extends Component {
         })
         .then(res => res.json())
         .then(res => {
-          this.setState({places: [...res], searchComplete: true})
+          this.setState({places: [...res], searchComplete: true, tab})
         })
       });
     }
@@ -40,7 +39,7 @@ class App extends Component {
     }
 
     render() {
-      const places = this.state.places.map(place => <PlaceCard place={place} key={place.place_id} />)
+      const places = this.state.places.map(place => <PlaceCard url={this.state.tab.url} place={place} key={place.place_id} />)
         return (
           <div className="App">
             <header className="App-header">
@@ -66,7 +65,7 @@ class App extends Component {
                   }
                 </div>
                 :
-                <Loader inverted>Loading...</Loader>
+                <Loader>Loading...</Loader>
               }
             </p>
           </div>

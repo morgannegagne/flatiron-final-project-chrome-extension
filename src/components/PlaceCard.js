@@ -10,6 +10,12 @@ class PlaceCard extends React.Component {
   handleClick = () => {
     const { place } = this.props
     console.log(place)
+    let location = {}
+    if (typeof place.geometry.location.lat === 'number'){
+      location = { lat: place.geometry.location.lat, lng: place.geometry.location.lng }
+    } else {
+      location = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
+    }
     const data = {
       place: {
         google_uid: place.place_id,
@@ -17,10 +23,11 @@ class PlaceCard extends React.Component {
         phone_number: place.formatted_phone_number,
         website: place.website,
         name: place.name,
-        lat: place.geometry.location.lat,
-        lng: place.geometry.location.lng
+        lat: location.lat,
+        lng: location.lng
       },
-      spot_type: 'save'
+      spot_type: 'save',
+      source: this.props.url
     }
     fetch(`http://localhost:3000/api/v1/spots`, {
       headers: {
@@ -41,7 +48,6 @@ class PlaceCard extends React.Component {
 
   render(){
     const { place } = this.props
-    console.log('place state', this.state)
     return(
       <div>
         {place.name}
